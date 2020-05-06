@@ -33,7 +33,7 @@ require_once __DIR__ .'/functions.php';
             <td><?=$value['id']?></td>
             <td><?=$value['name']?></td>
             <td><?=round((time() - strtotime($value['date']))/60)?></td>
-            <td><?=$value['discription']?></td>
+            <td><?=$value['description']?></td>
             <td><?=$value['pages']?></td>
             <td><?=$value['price']?></td>
             <td>
