@@ -1,9 +1,9 @@
 <?php
 require_once 'functions.php';
 if(isset($_POST['submit'])){
-    myCreate($_POST['name'],  $_POST['date'], $_POST['dis'],$_POST['pages'],$_POST['price']);
+    create($_POST['name'],  $_POST['date'], $_POST['dis'],$_POST['pages'],$_POST['price']);
+    header('Location: index.php');
 }
-
 
 ?>
 <!doctype html>
@@ -13,47 +13,52 @@ if(isset($_POST['submit'])){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script type="text/javascript">
-
         function validate() {
-            //Считаем значения из полей name и email в переменные x и y
-            var name = document.forms["form"]["name"].value;
-            var dis = document.forms["form"]["dis"].value;
-            var pages = document.forms["form"]["pages"].value;
-            var price = document.forms["form"]["price"].value;
+            var name = document.getElementById("name");
+            var dis = document.getElementById("dis");
+            var pages = document.getElementById("pages");
+            var price = document.getElementById("price");
 
-            //Если поле name пустое выведем сообщение и предотвратим отправку формы
 
-                if (name.length == 0) {
-                    document.forms["form"]["name"].style = "border-color: #900; background-color: #FDD;";
-                    // document.forms["form"]["name"].removeAttr('style');
-                    // return false;
-                }
-                if (dis.length == 0) {
-                    document.forms["form"]["dis"].style = "border-color: #900; background-color: #FDD;";
-                    // document.forms["form"]["dis"].removeAttr('style');
-                    // return false;
-                }
-                if (pages.length == 0) {
-                    document.forms["form"]["pages"].style = "border-color: #900; background-color: #FDD;";
-                    // document.forms["form"]["pages"].removeAttr('style');
-                    // return false;
-                }
-                if (price.length == 0) {
-                    document.forms["form"]["price"].style = "border-color: #900; background-color: #FDD;";
-                    // document.forms["form"]["price"].removeAttr('style');
-                    // return false;
-                }
-                if (name.length == 0 || dis.length == 0 || pages.length == 0 || price.length == 0) {
-                    // setTimeout(document.forms["form"]["name"].style = "border-color: black; background-color: black;", 40000)
-                    return false;
-                } else {
-                    return true;
-                        window.location.href = "www.google.com/";
-                }
+            if(!name.value) {
+                name.style.border = "2px solid red";
+            }
+            else{
+                name.style.border = "";
+            }
+
+            if(!dis.value) {
+                dis.style.border = "2px solid red";
+            }
+            else{
+                dis.style.border = "";
+            }
+
+            if(!pages.value) {
+                pages.style.border = "2px solid red";
+            }
+            else{
+                pages.style.border = "";
+            }
+
+            if(!price.value) {
+                price.style.border = "2px solid red";
+            }
+            else{
+                price.style.border = "";
+            }
+            if(!name.value || !dis.value || !pages.value || !price.value){
+                return false;
+            }
+            return true;
         }
+
+        alert (validate());
     </script>
+
     <title>Document</title>
 </head>
 <body>
@@ -81,5 +86,17 @@ if(isset($_POST['submit'])){
 <!--    style="border-color: red;"-->
 
 </form>
+
+<script>
+    // var a;
+    // a = validate();
+    // alert (a);
+    // if (validate() == true) {
+    //     window.location.href = 'index.php';
+    // }
+
+
+</script>
+
 </body>
 </html>

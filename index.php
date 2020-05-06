@@ -1,11 +1,7 @@
 <?php
-require_once 'functions.php';
-
-$myGet = myGet();
-if(isset($_POST['del'])){
-    myDelete($_POST['del']);
-}
+require_once __DIR__ .'/functions.php';
 ?>
+
 <!doctype html>
 <html lang="ru">
 <head>
@@ -13,6 +9,7 @@ if(isset($_POST['del'])){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -31,23 +28,60 @@ if(isset($_POST['del'])){
 
     </tr>
     <?php
-    foreach ($myGet as $key => $value):?>
-        <tr>
+    foreach (getAll() as $key => $value) :?>
+        <tr class="books-row-id_<?= $value['id']?>">
             <td><?=$value['id']?></td>
             <td><?=$value['name']?></td>
             <td><?=round((time() - strtotime($value['date']))/60)?></td>
             <td><?=$value['discription']?></td>
             <td><?=$value['pages']?></td>
             <td><?=$value['price']?></td>
-            <td><form method="post"><button name="del" value="<?=$value['id']?>">Удалить</button></form></td>
+            <td>
+                <a class="delete-link" href="#" data-name="<?= $value['name']?>" data-id="<?= $value['id']?>">Удалить</a>
+            </td>
         </tr>
 
-    <?php
-    endforeach;
-    ?>
+    <?php endforeach; ?>
 
 
 
 </table>
+
+<script>
+    $( document ).ready(function() {
+        $(".delete-link").on("click", function(e) {
+            e.preventDefault();
+
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+
+            $.ajax({
+                method: "POST",
+                url: "ajax/ajaxBookDelete.php",
+                data: {
+                    id: id,
+                    name: name
+                }
+            })
+                .fail(function() {
+                    alert( "error" );
+                })
+
+                .done(function(response) {
+                    console.log(response);
+                    let data = JSON.parse(response);
+
+                    if (data.error) {
+                        alert(data.message)
+                    }else {
+                        $('.books-row-id_' + id).detach();
+                        alert(data.message)
+                    }
+                });
+        });
+    });
+
+</script>
+
 </body>
 </html>
