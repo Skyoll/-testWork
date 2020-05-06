@@ -1,7 +1,7 @@
 <?php
 
 
-function create($name, $date, $des, $pages, $price){
+function create($name, $date, $des, $pages, $price) {
     $connect = getConnection();
     $query = "INSERT INTO books(name, date, description, pages, price) VALUE('$name', '$date', '$des', '$pages', '$price')";
     $result = mysqli_query($connect, $query) or die ("Error");
@@ -9,7 +9,7 @@ function create($name, $date, $des, $pages, $price){
 
 }
 
-function delete($id){
+function delete($id) {
     $connect = getConnection();
     $query = "DELETE FROM books WHERE id = '$id'";
     $result = mysqli_query($connect, $query);
@@ -17,7 +17,7 @@ function delete($id){
     return $result;
 }
 
-function getAll(){
+function getAll() {
     $connect = getConnection();
     $query = "SELECT * FROM books";
     $result = mysqli_query($connect, $query) or die ("Error");

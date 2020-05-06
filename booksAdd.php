@@ -1,8 +1,8 @@
 <?php
 require_once 'functions.php';
-if(isset($_POST['submit'])){
-    create($_POST['name'],  $_POST['date'], $_POST['dis'],$_POST['pages'],$_POST['price']);
-    header('Location: index.php');
+if (isset($_POST['submit'])) {
+    create ($_POST['name'],  $_POST['date'], $_POST['dis'],$_POST['pages'],$_POST['price']);
+    header ('Location: index.php');
 }
 
 ?>
@@ -23,34 +23,34 @@ if(isset($_POST['submit'])){
             var price = document.getElementById("price");
 
 
-            if(!name.value) {
+            if (!name.value) {
                 name.style.border = "2px solid red";
             }
-            else{
+            else {
                 name.style.border = "";
             }
 
-            if(!dis.value) {
+            if (!dis.value) {
                 dis.style.border = "2px solid red";
             }
-            else{
+            else {
                 dis.style.border = "";
             }
 
-            if(!pages.value) {
+            if (!pages.value) {
                 pages.style.border = "2px solid red";
             }
-            else{
+            else {
                 pages.style.border = "";
             }
 
-            if(!price.value) {
+            if (!price.value) {
                 price.style.border = "2px solid red";
             }
-            else{
+            else {
                 price.style.border = "";
             }
-            if(!name.value || !dis.value || !pages.value || !price.value){
+            if (!name.value || !dis.value || !pages.value || !price.value) {
                 return false;
             }
             return true;
@@ -82,21 +82,6 @@ if(isset($_POST['submit'])){
     <p>
         <input type="submit" name="submit" id="submit" value="Добавить книгу">
     </p>
-
-<!--    style="border-color: red;"-->
-
 </form>
-
-<script>
-    // var a;
-    // a = validate();
-    // alert (a);
-    // if (validate() == true) {
-    //     window.location.href = 'index.php';
-    // }
-
-
-</script>
-
 </body>
 </html>

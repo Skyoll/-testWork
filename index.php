@@ -15,8 +15,6 @@ require_once __DIR__ .'/functions.php';
 <body>
 <h3><a href="booksAdd.php">Добавить книгу</a></h3>
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
-
-
         <tr>
         <th>№</th>
         <th>Название</th>
@@ -25,8 +23,8 @@ require_once __DIR__ .'/functions.php';
         <th>Кол-во страниц</th>
         <th>Цена</th>
         <th>Удалить</th>
-
     </tr>
+
     <?php
     foreach (getAll() as $key => $value) :?>
         <tr class="books-row-id_<?= $value['id']?>">
@@ -43,10 +41,7 @@ require_once __DIR__ .'/functions.php';
 
     <?php endforeach; ?>
 
-
-
 </table>
-
 <script>
     $( document ).ready(function() {
         $(".delete-link").on("click", function(e) {
