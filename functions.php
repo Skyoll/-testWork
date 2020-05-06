@@ -1,9 +1,9 @@
 <?php
 
 
-function create($name, $date, $dis, $pages, $price){
+function create($name, $date, $des, $pages, $price){
     $connect = getConnection();
-    $query = "INSERT INTO books(name, date, discription, pages, price) VALUE('$name', '$date', '$dis', '$pages', '$price')";
+    $query = "INSERT INTO books(name, date, description, pages, price) VALUE('$name', '$date', '$des', '$pages', '$price')";
     $result = mysqli_query($connect, $query) or die ("Error");
     mysqli_close($connect);
 
